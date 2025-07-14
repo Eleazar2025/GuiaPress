@@ -1,8 +1,31 @@
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
+const connection = require("./database/database");
+
+//Carregando a View Engine
+app.set('view engine','ejs');
+
+//Configurando o body-parser para trabalharmos com formulários
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
+// Trabalhando com arquivos estáticos
+app.use(express.static('public'));
+
+//Conectando com o bd
+connection
+    .authenticate()
+    .then(() => {
+        console.log("Conexão feita com sucesso!");
+    }).catch((error) => {
+        console.log(error);
+    })
+
+    
 
 app.get("/", (req, res) => {
-    res.send("Bem vindo");
+    res.render("index");
 })
 
 app.listen(8080, () => {
