@@ -7,6 +7,9 @@ const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
 const keysController = require("./keys/KeysController");
 
+const Article = require("./articles/Article");
+const Category = require("./categories/Category");
+const Keys = require("./keys/Key");
 
 //Carregando a View Engine
 app.set('view engine','ejs');
