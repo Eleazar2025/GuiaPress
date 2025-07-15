@@ -4,8 +4,8 @@ const router = express.Router();
 // const slugify = require("slugify");
 
 router.get("/admin/keys/new", (req, res) => {
-    res.send("Rota para criar novas keys");
-    // res.render("admin/categories/new");
+    // res.send("Rota para criar novas keys");
+    res.render("admin/keys/new");
 });
 
 router.get("/keys", (req, res) => {
