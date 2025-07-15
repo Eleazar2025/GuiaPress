@@ -23,6 +23,6 @@ const Keys = connection.define('keys', {
     }
 })
 
-Keys.sync({force: true});
+// Keys.sync({force: true});
 
 module.exports = Keys;
