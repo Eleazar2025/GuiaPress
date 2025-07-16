@@ -22,14 +22,32 @@ router.post("/categories/save", (req, res) => {
     }
 });
 
-
-
 //Criando rota para exibir categories 
 router.get("/admin/categories", (req, res) => {
     Category.findAll().then(categories => {
         res.render("admin/categories/index.ejs", {
             categories: categories });
     });
+});
+
+//Deletendo categories
+router.post("/categories/delete", (req, res) => {
+    var id = req.body.id;
+    if(id != undefined){
+        if(!isNaN(id)){
+            Category.destroy({
+                where:{
+                    id: id
+                }
+            }).then (() => {
+                res.redirect("/admin/categories");
+            });
+        }else{//se id não for número
+            res.redirect("/admin/categories");
+        }
+    }else{//se id for nulo
+        res.redirect("/admin/categories");
+    }
 });
 
 module.exports = router;
