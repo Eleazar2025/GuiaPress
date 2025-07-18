@@ -41,7 +41,9 @@ app.get("/", (req, res) => {
             ['id', 'DESC']
         ]
     }).then(articles => {
-        res.render("index", {articles: articles});
+        Category.findAll().then(categories => {
+            res.render("index", {articles: articles, categories: categories});
+        });
     });
 })
 
