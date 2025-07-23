@@ -8,6 +8,12 @@
         <li class="nav=item">
             <a class="nav-link" href="/">Home</a>
         </li>
+        <li class="nav=item">
+            <a class="nav-link" href="/admin/users">Users</a>
+        </li>
+        <li class="nav=item">
+            <a class="nav-link" href="/admin/users/create">Cadastro user</a>
+        </li>
         <% categories.forEach(category => { %>
             <li class="nav-item">
                 <a class="nav-link" href="/category/<%= category.slug %>"><%= category.title %></a>
