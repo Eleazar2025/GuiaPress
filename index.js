@@ -5,10 +5,12 @@ const connection = require("./database/database");
 
 const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
+const usersController = require("./users/UsersController");
 // const keysController = require("./keys/KeysController");
 
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
+const User = require("./users/User");
 // const Keys = require("./keys/Key");
 
 //Carregando a View Engine
@@ -32,6 +34,7 @@ connection
 
 app.use("/",categoriesController);    
 app.use("/",articlesController);
+app.use("/",usersController);
 // app.use("/",keysController);
 
 
