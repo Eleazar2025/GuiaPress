@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const session = require("express-session");
 const connection = require("./database/database");
 
 const categoriesController = require("./categories/CategoriesController");
@@ -15,6 +16,11 @@ const User = require("./users/User");
 
 //Carregando a View Engine
 app.set('view engine','ejs');
+
+//Sessões
+app.use(session({
+    secret: "qualquercoisa", cookie: { maxAge: 30000000 }
+}))
 
 //Configurando o body-parser para trabalharmos com formulários
 app.use(bodyParser.urlencoded({extended: false}));
@@ -36,6 +42,28 @@ app.use("/",categoriesController);
 app.use("/",articlesController);
 app.use("/",usersController);
 // app.use("/",keysController);
+
+//Testando sessões
+app.get("/session", (req, res) => {
+    req.session.treinamento = "Formação Node JS"
+    req.session.ano = 2025
+    req.session.email = "eliribeiro@uol.com"
+    req.session.user ={
+        username: "eleazar",
+        email: "email@gmail.com",
+        id:10
+    }
+    res.send("Sessão Gerada");
+});
+
+app.get("/leitura", (req, res) => {
+    res.json({
+        treinamento: req.session.treinamento,
+        ano: req.session.ano,
+        email: req.session.email,
+        user: req.session.user
+    })
+});
 
 
 app.get("/", (req, res) => {
